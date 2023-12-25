@@ -20,6 +20,10 @@ const onClick = () => {
       <button type="button" @click="onClick">click me</button>
     </form>
 
-    <DataSheet v-for="data in datasheets" :data="data" :key="data.name"></DataSheet>
+    <DataSheet
+      v-for="data in datasheets"
+      :data="data"
+      :key="data.name"
+    ></DataSheet>
   </main>
 </template>
