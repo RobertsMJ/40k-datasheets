@@ -9,6 +9,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/create">Create</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
@@ -34,6 +35,8 @@ header {
 
 nav {
   width: 100%;
+  display: flex;
+  flex-direction: column;
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;

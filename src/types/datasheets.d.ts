@@ -1,4 +1,4 @@
-export interface IUnitAttributes {
+export interface IDatasheetUnitAttributes {
   movement: string
   toughness: string
   save: string
@@ -15,34 +15,34 @@ export interface IWeaponAttributes {
   armour_penetration: string
   damage: string
 }
-export interface IWeapon {
+export interface IDatasheetWeapon {
   name: string
-  profiles?: IWeapon[]
+  profiles?: IDatasheetWeapon[]
   abilities?: string[]
   attributes: IWeaponAttributes
 }
-export interface IWargearOption {
+export interface IDatasheetWargearOption {
   text: string
   options?: string[]
 }
-export interface IAbility {
+export interface IDatasheetAbility {
   type?: string
   name: string
   id?: string
   text?: string
 }
-export interface IUnitComposition {
+export interface IDatasheetUnitComposition {
   models: string[]
   loadout: string
 }
 export interface IDatasheet {
   name: string
-  attributes: IUnitAttributes
-  ranged_weapons: IWeapon[]
-  melee_weapons: IWeapon[]
-  wargear_options: IWargearOption[]
-  abilities: IAbility[]
-  unit_composition: IUnitComposition
+  attributes: IDatasheetUnitAttributes
+  ranged_weapons: IDatasheetWeapon[]
+  melee_weapons: IDatasheetWeapon[]
+  wargear_options: IDatasheetWargearOption[]
+  abilities: IDatasheetAbility[]
+  unit_composition: IDatasheetUnitComposition
   keywords: string[]
   faction: string
 }
