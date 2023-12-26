@@ -9,15 +9,13 @@ export interface IDatasheetUnitAttributes {
 export interface IWeaponAttributes {
   range: string
   attacks: string
-  ballistic_skill?: string
-  weapon_skill?: string
+  skill: string
   strength: string
   armour_penetration: string
   damage: string
 }
 export interface IDatasheetWeapon {
   name: string
-  profiles?: IDatasheetWeapon[]
   abilities?: string[]
   attributes: IWeaponAttributes
 }

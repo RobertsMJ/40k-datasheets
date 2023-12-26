@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { IDatasheet } from '@/types/datasheets'
 import { reactive } from 'vue'
 import DatasheetAttributeInput from '../components/DatasheetAttributeInput.vue'
 

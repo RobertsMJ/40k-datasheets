@@ -12,7 +12,9 @@ defineEmits(['update:modelValue'])
       class="attribute__input"
       type="text"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="
+        $emit('update:modelValue', ($event.target as HTMLInputElement)?.value)
+      "
     />
   </fieldset>
 </template>
