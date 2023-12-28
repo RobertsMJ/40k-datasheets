@@ -152,7 +152,7 @@
     ],
     "wargear_options": [
       {
-        "text": "The Inercessor Sergeant's bolt rifle can be replaced with one of the following:",
+        "text": "The Intercessor Sergeant's bolt rifle can be replaced with one of the following:",
         "options": [
           "1 Astartes chainsword",
           "1 hand flamer",
@@ -161,7 +161,7 @@
         ]
       },
       {
-        "text": "The Inercessor Sergeant's close combat weapon can be replaced with one of the following:",
+        "text": "The Intercessor Sergeant's close combat weapon can be replaced with one of the following:",
         "options": [
           "1 Astartes chainsword",
           "1 power fist",

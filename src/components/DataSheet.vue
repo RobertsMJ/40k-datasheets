@@ -2,6 +2,7 @@
 import type { IDatasheet } from '@/types/datasheets'
 import DataSheetHeader from '@/components/DataSheetHeader.vue'
 import DataSheetWeaponTable from './DataSheetWeaponTable.vue'
+import DataSheetWargearOptions from './DataSheetWargearOptions.vue';
 
 defineProps<{
   data: IDatasheet
@@ -24,6 +25,7 @@ defineProps<{
       skill="WS"
       class="datasheet__table"
     />
+    <DataSheetWargearOptions :wargear-opts="data.wargear_options" />
   </section>
 </template>
 <style scoped lang="scss">
