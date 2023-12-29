@@ -1,7 +1,21 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import DatasheetAttributeInput from '../components/DatasheetAttributeInput.vue'
+import DatasheetCreateWeaponsTable from '../components/DatasheetCreateWeaponsTable.vue'
+import type { IDatasheetWeapon } from '@/types/datasheets'
 
+const getInitialWeapon = (): IDatasheetWeapon => ({
+  name: '',
+  abilities: [],
+  attributes: {
+    range: '',
+    attacks: '',
+    skill: '',
+    strength: '',
+    armour_penetration: '',
+    damage: ''
+  }
+})
 const getInitialFormState = () => ({
   name: '',
   attributes: {
@@ -11,7 +25,8 @@ const getInitialFormState = () => ({
     wounds: '',
     leadership: '',
     objective_control: ''
-  }
+  },
+  ranged_weapons: [getInitialWeapon()]
 })
 
 const form = reactive(getInitialFormState())
@@ -29,6 +44,23 @@ const onClear = () => {
     <fieldset class="form__attributes-fieldset">
       <DatasheetAttributeInput label="M" v-model="form.attributes.movement" />
       <DatasheetAttributeInput label="T" v-model="form.attributes.toughness" />
+      <DatasheetAttributeInput label="SV" v-model="form.attributes.save" />
+      <DatasheetAttributeInput label="W" v-model="form.attributes.wounds" />
+      <DatasheetAttributeInput
+        label="LD"
+        v-model="form.attributes.leadership"
+      />
+      <DatasheetAttributeInput
+        label="OC"
+        v-model="form.attributes.objective_control"
+      />
+    </fieldset>
+    <fieldset class="form__attributes-fieldset">
+      <DatasheetCreateWeaponsTable
+        v-model="form.ranged_weapons"
+        name="Ranged Weapons"
+        skill="BS"
+      />
     </fieldset>
 
     <button type="button" @click="onSave">save</button>
