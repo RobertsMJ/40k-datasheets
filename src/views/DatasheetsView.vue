@@ -2,21 +2,24 @@
 import DataSheet from '@/components/DataSheet.vue'
 import { useFetch } from '@/composables/useFetch'
 import { useCursor } from '@/composables/useCursor'
-import { useDataSheetsStore } from '@/store/datasheets'
 import type { IDatasheet } from '@/types/datasheets'
-
-const store = useDataSheetsStore()
-await store.getDataSheets()
-
-const { data, error } = useFetch<IDatasheet[]>('space_marines.json')
+import { ref } from 'vue'
 
 const { x, y } = useCursor()
+
+const faction = ref('space_marines')
+const { data, error } = useFetch<IDatasheet[]>(() => `${faction.value}.json`)
 </script>
 
 <template>
   <main>
     {{ x }}, {{ y }}
-    <div v-if="error">{{ error }}</div>
+    <select name="faction" v-model="faction">
+      <option value="space_marines">Space Marines</option>
+      <option value="adeptus_mechanicus">Adeptus Mechanicus</option>
+      <option value="tyranids">Tyranids</option>
+    </select>
+    <div v-if="error">Select a faction! {{ error }}</div>
     <DataSheet
       v-else
       v-for="sheet in data"

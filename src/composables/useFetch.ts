@@ -1,6 +1,6 @@
-import { ref, toValue, watchEffect, type Ref } from 'vue'
+import { ref, toValue, watchEffect, type Ref, type MaybeRefOrGetter } from 'vue'
 
-export function useFetch<Type>(url: string): {
+export function useFetch<Type>(url: MaybeRefOrGetter<string>): {
   data: Ref<Type | null>
   error: Ref<string | null>
 } {
