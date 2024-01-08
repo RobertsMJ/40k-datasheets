@@ -31,6 +31,7 @@ const attributes = [
   <tr>
     <td>
       <input
+        class="input"
         :value="modelValue.name"
         @input="
           $emit('update:modelValue', {
@@ -46,7 +47,7 @@ const attributes = [
       class="create-weapon-row__centered-col"
     >
       <input
-        class="create-weapon-row__attribute-input"
+        class="input create-weapon-row__attribute-input"
         :value="(modelValue.attributes as any)[attribute]"
         @input="
           updateAttribute({

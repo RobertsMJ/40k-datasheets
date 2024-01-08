@@ -39,15 +39,16 @@ const onClear = () => {
 <template>
   <form>
     <label for="name" class="form__label">Name</label>
-    <input type="text" name="name" v-model="form.name" />
+    <input class="input" type="text" name="name" v-model="form.name" />
 
     <fieldset class="form__attributes-fieldset">
-      <DatasheetAttributeInput label="M" v-model="form.attributes.movement" />
+      <DatasheetAttributeInput label="M" decorator='"' v-model="form.attributes.movement" />
       <DatasheetAttributeInput label="T" v-model="form.attributes.toughness" />
-      <DatasheetAttributeInput label="SV" v-model="form.attributes.save" />
+      <DatasheetAttributeInput label="SV" decorator="+" v-model="form.attributes.save" />
       <DatasheetAttributeInput label="W" v-model="form.attributes.wounds" />
       <DatasheetAttributeInput
         label="LD"
+        decorator="+"
         v-model="form.attributes.leadership"
       />
       <DatasheetAttributeInput

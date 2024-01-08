@@ -2,20 +2,25 @@
 defineProps<{
   label: string
   modelValue: string
+  decorator?: string
 }>()
 defineEmits(['update:modelValue'])
 </script>
 <template>
   <fieldset class="attribute">
-    <label class="attribute__label">{{ label }}</label>
-    <input
-      class="attribute__input"
-      type="text"
-      :value="modelValue"
-      @input="
-        $emit('update:modelValue', ($event.target as HTMLInputElement)?.value)
-      "
-    />
+    <label>{{ label }}</label>
+    <span>
+      <input
+        class="input attribute__input"
+        type="text"
+        :value="modelValue"
+        @input="
+          $emit('update:modelValue', ($event.target as HTMLInputElement)?.value)
+        "
+      /><span class="attribute__decorator" v-if="decorator">{{
+        decorator
+      }}</span>
+    </span>
   </fieldset>
 </template>
 <style scoped lang="scss">
@@ -27,9 +32,10 @@ defineEmits(['update:modelValue'])
   padding: 0;
   margin: 0.25rem;
 }
-.attribute__label {
-}
 .attribute__input {
-  max-width: 2rem;
+  max-width: 2.25rem;
+}
+.attribute__decorator {
+  margin-left: 0.2rem;
 }
 </style>
