@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { IDatasheetWeapon } from '@/types/datasheets'
+import type { IWeapon } from '@/types/datasheets'
 
-const props = defineProps<{ modelValue: IDatasheetWeapon }>()
+const props = defineProps<{ modelValue: IWeapon }>()
 const emit = defineEmits(['update:modelValue', 'addWeapon', 'deleteWeapon'])
 
 const updateAttribute = (updatedAttr: Object) => {
@@ -67,7 +67,7 @@ const attributes = [
   text-align: center;
 }
 .create-weapon-row__attribute-input {
-  max-width: 1.5rem;
+  width: 1.5rem;
   align-self: center;
   text-align: center;
 }

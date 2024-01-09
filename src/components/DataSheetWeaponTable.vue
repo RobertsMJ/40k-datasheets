@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { IDatasheetWeapon } from '@/types/datasheets'
+import type { IWeapon } from '@/types/datasheets'
 
-defineProps<{ weapons: IDatasheetWeapon[]; name: string; skill: string }>()
+defineProps<{ weapons: IWeapon[]; name: string; skill: string }>()
 </script>
 <template>
   <table class="weapon-table">

@@ -1,43 +1,29 @@
 <script setup lang="ts">
-import type { IDatasheetWeapon } from '@/types/datasheets'
-import DatasheetCreateWeaponsTableInput from './DatasheetCreateWeaponsTableInput.vue'
+import { Weapon, type IWeapon } from '@/types/datasheets'
+import DatasheetCreateWeaponsTableRow from './DatasheetCreateWeaponsTableRow.vue'
 
 const props = defineProps<{
-  modelValue: IDatasheetWeapon[]
+  modelValue: IWeapon[]
   name: string
   skill: string
 }>()
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits<{ 'update:modelValue': [weapons: IWeapon[]] }>()
 
-const updateWeaponAtIndex = (
-  updatedWeapon: IDatasheetWeapon,
-  index: number
-) => {
+const updateWeaponAtIndex = (updatedWeapon: IWeapon, index: number) => {
   emit(
     'update:modelValue',
-    props.modelValue.map((mv, i) => (i === index ? updatedWeapon : mv))
+    props.modelValue.map((weapon, i) => (i === index ? updatedWeapon : weapon))
   )
 }
-const getInitialWeapon = (): IDatasheetWeapon => ({
-  name: '',
-  abilities: [],
-  attributes: {
-    range: '',
-    attacks: '',
-    skill: '',
-    strength: '',
-    armour_penetration: '',
-    damage: ''
-  }
-})
 
 const addWeaponAtIndex = (idx: number) => {
   emit('update:modelValue', [
     ...props.modelValue.slice(0, idx),
-    getInitialWeapon(),
+    new Weapon(),
     ...props.modelValue.slice(idx)
   ])
 }
+
 const deleteWeaponAtIndex = (idx: number) => {
   emit(
     'update:modelValue',
@@ -57,7 +43,7 @@ const deleteWeaponAtIndex = (idx: number) => {
       <th>D</th>
       <th />
     </tr>
-    <DatasheetCreateWeaponsTableInput
+    <DatasheetCreateWeaponsTableRow
       v-for="(weapon, idx) in modelValue"
       :key="idx"
       :model-value="weapon"

@@ -2,36 +2,19 @@
 import { reactive } from 'vue'
 import DatasheetAttributeInput from '../components/DatasheetAttributeInput.vue'
 import DatasheetCreateWeaponsTable from '../components/DatasheetCreateWeaponsTable.vue'
-import type { IDatasheetWeapon } from '@/types/datasheets'
+import { Datasheet, Weapon } from '@/types/datasheets'
+import { useSaveDatasheet } from '@/composables/useSaveDatasheet'
 
-const getInitialWeapon = (): IDatasheetWeapon => ({
-  name: '',
-  abilities: [],
-  attributes: {
-    range: '',
-    attacks: '',
-    skill: '',
-    strength: '',
-    armour_penetration: '',
-    damage: ''
-  }
-})
-const getInitialFormState = () => ({
-  name: '',
-  attributes: {
-    movement: '',
-    toughness: '',
-    save: '',
-    wounds: '',
-    leadership: '',
-    objective_control: ''
-  },
-  ranged_weapons: [getInitialWeapon()]
-})
+const getInitialFormState = () =>
+  new Datasheet({
+    ranged_weapons: [new Weapon()],
+    melee_weapons: [new Weapon()]
+  })
 
 const form = reactive(getInitialFormState())
 
-const onSave = () => console.log(form)
+const { saveDatasheet: onSave } = useSaveDatasheet(() => form)
+
 const onClear = () => {
   Object.assign(form, getInitialFormState())
 }
@@ -42,9 +25,17 @@ const onClear = () => {
     <input class="input" type="text" name="name" v-model="form.name" />
 
     <fieldset class="form__attributes-fieldset">
-      <DatasheetAttributeInput label="M" decorator='"' v-model="form.attributes.movement" />
+      <DatasheetAttributeInput
+        label="M"
+        decorator='"'
+        v-model="form.attributes.movement"
+      />
       <DatasheetAttributeInput label="T" v-model="form.attributes.toughness" />
-      <DatasheetAttributeInput label="SV" decorator="+" v-model="form.attributes.save" />
+      <DatasheetAttributeInput
+        label="SV"
+        decorator="+"
+        v-model="form.attributes.save"
+      />
       <DatasheetAttributeInput label="W" v-model="form.attributes.wounds" />
       <DatasheetAttributeInput
         label="LD"
@@ -61,6 +52,11 @@ const onClear = () => {
         v-model="form.ranged_weapons"
         name="Ranged Weapons"
         skill="BS"
+      />
+      <DatasheetCreateWeaponsTable
+        v-model="form.melee_weapons"
+        name="Melee Weapons"
+        skill="WS"
       />
     </fieldset>
 
