@@ -11,7 +11,7 @@ const getInitialFormState = () =>
     melee_weapons: [new Weapon()]
   })
 
-const form = reactive(getInitialFormState())
+const form = reactive<Datasheet>(getInitialFormState())
 
 const { saveDatasheet: onSave } = useSaveDatasheet(() => form)
 

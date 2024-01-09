@@ -9,17 +9,18 @@ defineEmits(['update:modelValue'])
 <template>
   <fieldset class="attribute">
     <label>{{ label }}</label>
-    <span>
+    <span class="input attribute-input">
       <input
-        class="input attribute__input"
+        class="attribute-input__input"
         type="text"
         :value="modelValue"
         @input="
           $emit('update:modelValue', ($event.target as HTMLInputElement)?.value)
         "
-      /><span class="attribute__decorator" v-if="decorator">{{
-        decorator
-      }}</span>
+      />
+      <span v-if="decorator" class="attribute-input__append">
+        {{ decorator }}
+      </span>
     </span>
   </fieldset>
 </template>
@@ -32,10 +33,37 @@ defineEmits(['update:modelValue'])
   padding: 0;
   margin: 0.25rem;
 }
-.attribute__input {
-  max-width: 2.25rem;
+.attribute-input {
+  border: 1px solid var(--color-border);
+  display: inline-flex;
+  align-items: baseline;
+  background: var(--vt-c-white);
+  // padding: 0;
+
+  &:focus-within {
+    box-shadow: 0 0 0.3rem 0.1rem rgba(red, 0.5);
+  }
 }
-.attribute__decorator {
-  margin-left: 0.2rem;
+.attribute-input__input {
+  border: none;
+  background: none;
+  text-align: center;
+
+  margin: 0;
+  padding: 0;
+  width: 1rem;
+  // height: 1.5rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+.attribute-input__prepend,
+.attribute-input__append {
+  display: flex;
+  padding: 0;
+  background: none;
+  color: var(--vt-c-black);
+  line-height: 1;
 }
 </style>
