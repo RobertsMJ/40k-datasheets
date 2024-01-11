@@ -2,7 +2,7 @@
 import type { IDatasheet } from '@/types/datasheets'
 import DataSheetHeader from '@/components/DataSheetHeader.vue'
 import DataSheetWeaponTable from './DataSheetWeaponTable.vue'
-import DataSheetWargearOptions from './DataSheetWargearOptions.vue';
+import DataSheetWargearOptions from './DataSheetWargearOptions.vue'
 
 defineProps<{
   data: IDatasheet

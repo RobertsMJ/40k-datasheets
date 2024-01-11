@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { IWeapon } from '@/types/datasheets'
+import DatasheetAbility from './DatasheetAbility.vue'
 
 defineProps<{ weapons: IWeapon[]; name: string; skill: string }>()
 </script>
@@ -19,7 +20,16 @@ defineProps<{ weapons: IWeapon[]; name: string; skill: string }>()
       :key="weapon.name"
       class="weapon-table__table-row"
     >
-      <td class="weapon-table__data">{{ weapon.name }}</td>
+      <td class="weapon-table__data">
+        <p>{{ weapon.name }}</p>
+        <p class="weapon-table__abilities">
+          <DatasheetAbility
+            v-for="ability of weapon.abilities"
+            :key="ability"
+            :id="ability"
+          />
+        </p>
+      </td>
       <td class="weapon-table__data weapon-table__data--centered">
         {{ weapon.attributes.range }}
       </td>
@@ -43,14 +53,15 @@ defineProps<{ weapons: IWeapon[]; name: string; skill: string }>()
 </template>
 <style scoped lang="scss">
 .weapon-table__header-row {
-  background-color: darkblue;
+  background-color: var(--vt-c-ultramarines-blue);
+  color: var(--vt-c-text-dark-1);
 }
 .weapon-table__table-row {
   &:nth-child(odd) {
-    background-color: rgba(#000, 0.25);
+    background-color: var(--vt-c-black-soft);
   }
   &:hover {
-    background-color: rgba(#000, 0.5);
+    background-color: var(--vt-c-black-mute);
   }
 }
 .weapon-table__data {
@@ -58,5 +69,8 @@ defineProps<{ weapons: IWeapon[]; name: string; skill: string }>()
 }
 .weapon-table__data--centered {
   text-align: center;
+}
+.weapon-table__abilities {
+  margin-left: 1rem;
 }
 </style>

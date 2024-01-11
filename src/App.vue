@@ -42,7 +42,8 @@ header {
 nav {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
@@ -84,6 +85,7 @@ nav a:first-of-type {
   }
 
   nav {
+    flex-direction: column;
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;

@@ -1,8 +1,8 @@
 :root {
-    --form-border-radius: 0.25rem;
+  --form-border-radius: 0.25rem;
 }
 
 .input {
-    border-radius: 0.25rem;
-    padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
 }

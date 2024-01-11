@@ -14,7 +14,6 @@ export function useFetch<Type>(url: MaybeRefOrGetter<string>): {
     try {
       const res = await fetch(toValue(url))
       data.value = await res.json()
-      console.log('I got the data')
     } catch (ex) {
       if (ex instanceof Error) error.value = ex.message
       else error.value = String(ex)

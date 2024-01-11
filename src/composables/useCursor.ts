@@ -8,7 +8,6 @@ export function useCursor(): { x: NullableNumber; y: NullableNumber } {
   function updateCursor(event: MouseEvent) {
     x.value = event.clientX
     y.value = event.clientY
-    console.log('I update cursor pos')
   }
 
   onMounted(() => window.addEventListener('mousemove', updateCursor))
