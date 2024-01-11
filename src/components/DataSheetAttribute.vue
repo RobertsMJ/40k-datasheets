@@ -21,7 +21,7 @@ defineProps<{
 $border-radius: 20%;
 .attr-value {
   padding: 8px;
-  border: 3px solid red;
+  border: 3px solid var(--vt-c-ultramarines-blue);
   border-top-left-radius: $border-radius;
   border-bottom-right-radius: $border-radius;
 }
