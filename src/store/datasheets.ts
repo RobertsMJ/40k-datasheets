@@ -7,6 +7,7 @@ export const useDatasheetsStore = defineStore('datasheets', () => {
   const datasheets = computed((): Ref<IDatasheet[]> => data)
 
   async function getDatasheets(faction: MaybeRefOrGetter<string>) {
+    data.value = []
     try {
       const res = await fetch(`${toValue(faction)}.json`)
       data.value = await res.json()

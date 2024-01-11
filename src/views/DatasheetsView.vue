@@ -1,16 +1,24 @@
 <script setup lang="ts">
 import DataSheet from '@/components/DataSheet.vue'
 import { useCursor } from '@/composables/useCursor'
-import { ref } from 'vue'
-import { useFetch } from '@/composables/useFetch'
-import type { IDatasheet } from '@/types/datasheets'
+import { ref, watchEffect } from 'vue'
+import { useDatasheetsStore } from '@/store/datasheets'
 
 const { x, y } = useCursor()
 
 const faction = ref('space_marines')
-const { data: datasheets, error } = useFetch<IDatasheet[]>(
-  () => `${faction.value}.json`
-)
+
+const store = useDatasheetsStore()
+const error = ref<Error | null>(null)
+
+watchEffect(async () => {
+  try {
+    await store.getDatasheets(faction)
+  } catch (ex) {
+    if (ex instanceof Error) error.value = ex
+    else error.value = new Error(String(ex))
+  }
+})
 </script>
 
 <template>
@@ -22,10 +30,10 @@ const { data: datasheets, error } = useFetch<IDatasheet[]>(
       <option value="tyranids">Tyranids</option>
     </select>
     <section>
-      <div v-if="error">Select a faction! {{ error }}</div>
+      <div v-if="error">Select a faction! {{ error.message }}</div>
       <DataSheet
         v-else
-        v-for="sheet in datasheets"
+        v-for="sheet in store.datasheets.value"
         :data="sheet"
         :key="sheet.name"
       ></DataSheet>
