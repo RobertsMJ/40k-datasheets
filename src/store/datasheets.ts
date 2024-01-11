@@ -1,10 +1,10 @@
 import type { IDatasheet } from '@/types/datasheets'
 import { defineStore } from 'pinia'
-import { ref, type MaybeRefOrGetter, computed, toValue, type Ref } from 'vue'
+import { ref, type MaybeRefOrGetter, computed, toValue } from 'vue'
 
 export const useDatasheetsStore = defineStore('datasheets', () => {
   const data = ref<IDatasheet[]>([])
-  const datasheets = computed((): Ref<IDatasheet[]> => data)
+  const datasheets = computed(() => data.value)
 
   async function getDatasheets(faction: MaybeRefOrGetter<string>) {
     data.value = []

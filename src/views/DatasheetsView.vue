@@ -12,6 +12,7 @@ const store = useDatasheetsStore()
 const error = ref<Error | null>(null)
 
 watchEffect(async () => {
+  error.value = null
   try {
     await store.getDatasheets(faction)
   } catch (ex) {
@@ -33,7 +34,7 @@ watchEffect(async () => {
       <div v-if="error">Select a faction! {{ error.message }}</div>
       <DataSheet
         v-else
-        v-for="sheet in store.datasheets.value"
+        v-for="sheet in store.datasheets"
         :data="sheet"
         :key="sheet.name"
       ></DataSheet>
